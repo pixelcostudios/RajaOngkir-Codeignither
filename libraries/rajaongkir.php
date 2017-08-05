@@ -23,7 +23,7 @@ class RajaOngkir extends Endpoints {
         $this->_ci->load->config('rajaongkir', TRUE);
         // Pastikan Anda sudah memasukkan API Key di application/config/rajaongkir.php
         if ($this->_ci->config->item('rajaongkir_api_key', 'rajaongkir') == "") {
-            log_message("error", "Harap masukkan API KEY Anda di config.");
+            log_message("error", "Harap masukkan API KEY Anda.");
         } else {
             $this->api_key = $this->_ci->config->item('rajaongkir_api_key', 'rajaongkir');
             $this->account_type = $this->_ci->config->item('rajaongkir_account_type', 'rajaongkir');

@@ -3,7 +3,9 @@
 /**
  * RajaOngkir Endpoints
  * 
- * @author Damar Riyadi <damar@tahutek.net>
+ * @author      Damar Riyadi <damar@tahutek.net>
+ * @modified    Gleen Ferdinand <info@pixelcostudios.com>
+ *
  */
 require_once 'restclient.php';
 
@@ -51,12 +53,14 @@ class Endpoints {
      * @param string $courier Kode kurir
      * @return string Response dari cURL, berupa string JSON balasan dari RajaOngkir
      */
-    function cost($origin, $destination, $weight, $courier) {
+    function cost($origin, $originType, $destination, $destinationType, $weight, $courier) {
         $params = array(
-            'origin' => $origin,
-            'destination' => $destination,
-            'weight' => $weight,
-            'courier' => $courier
+            'origin'            => $origin,
+            'originType'        => $originType,
+            'destination'       => $destination,
+            'destinationType'   => $destinationType,
+            'weight'            => $weight,
+            'courier'           => $courier
         );
         $rest_client = new RESTClient($this->api_key, 'cost', $this->account_type);
         return $rest_client->post($params);

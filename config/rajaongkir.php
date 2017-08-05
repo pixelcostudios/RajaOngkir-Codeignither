@@ -10,8 +10,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $config['rajaongkir_api_key'] = "";
 
 /**
- * RajaOngkir account type: starter or basic
+ * RajaOngkir account type: starter, basic, pro
  * http://rajaongkir.com/dokumentasi#akun-ringkasan
  * 
  */
-$config['rajaongkir_account_type'] = "basic";
+$config['rajaongkir_account_type'] = "starter";

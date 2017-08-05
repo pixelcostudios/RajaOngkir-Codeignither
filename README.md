@@ -33,10 +33,10 @@ $destination = $this->rajaongkir->internationalDestination($country_id = NULL);
 $cost = $this->rajaongkir->internationalCost($origin, $destination, $weight, $courier);
 
 //Untuk mendapatkan nilai kurs rupiah terhadap USD
-$cost = $this->rajaongkir->currency();
+$currency = $this->rajaongkir->currency();
 
 //Untuk melacak paket/nomor resi
-$cost = $this->rajaongkir->waybill($waybill_number, $courier);
+$resi = $this->rajaongkir->waybill($waybill_number, $courier);
 ```
 ### Response
 Response yang dihasilkan berupa string JSON balasan dari RajaOngkir.

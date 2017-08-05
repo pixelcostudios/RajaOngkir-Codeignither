@@ -3,7 +3,9 @@
 /**
  * RajaOngkir REST Client
  * 
- * @author Damar Riyadi <damar@tahutek.net>
+ * @author      Damar Riyadi <damar@tahutek.net>
+ * @modified    Gleen Ferdinand <info@pixelcostudios.com>
+ *
  */
 class RESTClient {
 
@@ -13,10 +15,10 @@ class RESTClient {
     private $api_url;
 
     public function __construct($api_key, $endpoint, $account_type) {
-        $this->api_key = $api_key;
-        $this->endpoint = $endpoint;
+        $this->api_key      = $api_key;
+        $this->endpoint     = $endpoint;
         $this->account_type = $account_type;
-        $this->api_url = "http://rajaongkir.com/api/";
+        $this->api_url      = ($account_type=='pro') ? "http://pro.rajaongkir.com/api/" : "http://rajaongkir.com/api/".$this->account_type."/";
     }
 
     /**
@@ -26,12 +28,12 @@ class RESTClient {
      * @return string Response dari cURL
      */
     function post($params) {
-        $curl = curl_init();
-        $header[] = "Content-Type: application/x-www-form-urlencoded";
-        $header[] = "key: $this->api_key";
-        $query = http_build_query($params);
+        $curl       = curl_init();
+        $header[]   = "Content-Type: application/x-www-form-urlencoded";
+        $header[]   = "key: $this->api_key";
+        $query      = http_build_query($params);
         curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
-        curl_setopt($curl, CURLOPT_URL, $this->api_url . "" . $this->account_type . "/" . $this->endpoint);
+        curl_setopt($curl, CURLOPT_URL, $this->api_url . $this->endpoint);
         curl_setopt($curl, CURLOPT_POST, TRUE);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $query);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
@@ -49,11 +51,11 @@ class RESTClient {
      * @return string Response dari cURL
      */
     function get($params) {
-        $curl = curl_init();
-        $header[] = "key: $this->api_key";
-        $query = http_build_query($params);
+        $curl       = curl_init();
+        $header[]   = "key: $this->api_key";
+        $query      = http_build_query($params);
         curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
-        curl_setopt($curl, CURLOPT_URL, $this->api_url . "" . $this->account_type . "/" . $this->endpoint . "?" . $query);
+        curl_setopt($curl, CURLOPT_URL, $this->api_url . $this->endpoint . "?" . $query);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
         $request = curl_exec($curl);
